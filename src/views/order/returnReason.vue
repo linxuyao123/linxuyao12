@@ -1,13 +1,11 @@
 <template>
-  <h1>我是Home</h1>
+  <h1>退货原因设置</h1>
 </template>
 
 <script>
 export default {
-  data() {
-    return {}
-  }
-};
+  name: "returnReason"
+}
 </script>
 
 <style scoped>

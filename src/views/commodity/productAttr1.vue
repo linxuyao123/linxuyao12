@@ -1,13 +1,11 @@
 <template>
-  <h1>我是Home</h1>
+  <h3>属性列表</h3>
 </template>
 
 <script>
 export default {
-  data() {
-    return {}
-  }
-};
+  name: "productAttr1"
+}
 </script>
 
 <style scoped>

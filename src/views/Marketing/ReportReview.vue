@@ -1,13 +1,11 @@
 <template>
-  <h1>我是Home</h1>
+  <h1>举报审核</h1>
 </template>
 
 <script>
 export default {
-  data() {
-    return {}
-  }
-};
+  name: "brand"
+}
 </script>
 
 <style scoped>

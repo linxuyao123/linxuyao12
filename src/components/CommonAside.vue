@@ -1,61 +1,264 @@
 <template>
-  <div>
-  <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-    <el-submenu index="1">
-      <template slot="title">
-        <i class="el-icon-location"></i>
-        <span slot="title">导航一</span>
-      </template>
-      <el-menu-item-group>
-        <span slot="title">分组一</span>
-        <el-menu-item index="1-1">选项1</el-menu-item>
-        <el-menu-item index="1-2">选项2</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="分组2">
-        <el-menu-item index="1-3">选项3</el-menu-item>
-      </el-menu-item-group>
-      <el-submenu index="1-4">
-        <span slot="title">选项4</span>
-        <el-menu-item index="1-4-1">选项1</el-menu-item>
+  <div class="info">
+    <el-menu
+        default-active="1-4-1"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        :collapse="isCollapse"
+        background-color="#304156"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+    >
+
+      <el-menu-item @click='clickMenu(item)' v-for="item in noChildren" :key="item.name" :index="item.name">
+        <i :class="`el-icon-${item.icon}`"></i>
+        <span slot="title">{{ item.label }}</span>
+      </el-menu-item>
+      <el-submenu v-for="item in hasChildren" :key="item.label" :index="item.label">
+        <template slot="title">
+          <i :class="`el-icon-${item.icon}`"></i>
+          <span slot="title">{{ item.label }}</span>
+        </template>
+        <el-menu-item-group v-for="subItem in item.children" :key="subItem.path">
+          <el-menu-item @click='clickMenu(subItem)' :index="subItem.path">{{ subItem.label }}</el-menu-item>
+        </el-menu-item-group>
       </el-submenu>
-    </el-submenu>
-    <el-menu-item index="2">
-      <i class="el-icon-menu"></i>
-      <span slot="title">导航二</span>
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-      <i class="el-icon-document"></i>
-      <span slot="title">导航三</span>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <i class="el-icon-setting"></i>
-      <span slot="title">导航四</span>
-    </el-menu-item>
-  </el-menu>
+    </el-menu>
   </div>
 </template>
-  <script>
-    export default {
-      name: "CommonAside",
-      data() {
-        return {
-          isCollapse: true
-        };
-      },
-      methods: {
-        handleOpen(key, keyPath) {
-          console.log(key, keyPath);
-        },
-        handleClose(key, keyPath) {
-          console.log(key, keyPath);
-        }
-      }
-    };
-  </script>
 
-<style scoped>
-    .el-menu-vertical-demo:not(.el-menu--collapse) {
-      width: 200px;
-      min-height: 400px;
+
+<script>
+
+export default {
+  name: "CommonAside",
+  data() {
+    return {
+      menuData: [
+        {
+          path: "/",
+          name: "home",
+          label: "首页",
+          icon: "s-home",
+          url: "Home/Home",
+        },
+        {
+          label: '商品',
+          icon: "s-goods",
+          children: [
+            {
+              path: "/pms/product",
+              name: "product",
+              label: "商品列表",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: "/pms/addProduct",
+              name: "addProduct",
+              label: "添加商品",
+              icon: "setting",
+              // url: "Pms/addProduct",
+            },
+            {
+              path: "/pms/productCate",
+              name: "productCate",
+              label: "商品分类",
+              icon: "setting",
+              // url: "Pms/addProduct",
+            },
+            {
+              path: "/pms/productAttr",
+              name: "productAttr",
+              label: "商品类型",
+              icon: "setting",
+              // url: "Pms/addProduct",
+            },
+            {
+              path: "/pms/brand",
+              name: "brand",
+              label: "品牌类型",
+              icon: "setting",
+              // url: "Pms/addProduct",
+            },
+            {
+              path: "/pms/another",
+              name: "another",
+              label: "其他",
+              icon: "setting",
+              // url: "Pms/addProduct",
+            },
+          ],
+        },
+        {
+          label: '订单',
+          icon: "s-order",
+          children: [
+            {
+              path: '/oms/order',
+              name: 'order',
+              label: "订单列表",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: '/oms/orderSetting',
+              name: 'orderSetting',
+              label: "订单设置",
+              icon: "setting",
+              // url: "Pms/addProduct",
+            },
+            {
+              path: '/oms/returnApply',
+              name: 'returnApply',
+              label: "退货申请处理",
+              icon: "setting",
+              // url: "Pms/addProduct",
+            },
+            {
+              path: '/oms/returnReason',
+              name: 'returnReason',
+              label: "退货原因设置",
+              icon: "setting",
+              // url: "Pms/addProduct",
+            },
+          ],
+        },
+        {
+          label: '商家管理',
+          icon: "collection",
+          children: [
+            {
+              path: '/store/listing',
+              name: 'listing',
+              label: "商家列表",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: '/store/settled',
+              name: 'infoModify',
+              label: "入驻申请",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: '/store/infoModify',
+              name: 'infoModify',
+              label: "信息修改",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: '/store/ReportReview',
+              name: 'ReportReview',
+              label: "举报审核",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: '/store/CommentDelet',
+              name: 'CommentDelet',
+              label: "评论删除",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: '/sms/advertise',
+              name: 'advertise',
+              label: "广告列表",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+          ],
+        },
+        {
+          label: '权限',
+          icon: "key",
+          children: [
+            {
+              path: '/ums/admin',
+              name: 'admin',
+              label: "用户列表",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: '/ums/role',
+              name: 'role',
+              label: "角色列表",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: '/ums/menu',
+              name: 'menu',
+              label: "菜单列表",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+            {
+              path: '/ums/resource',
+              name: 'resource',
+              label: "资源列表",
+              icon: "setting",
+              // url: "Pms/Product",
+            },
+          ],
+        }
+      ]
+    };
+  },
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    clickMenu(item) {
+      console.log(item)
+      // 当页面的路由与跳转的路由不一致才允许跳转
+      if (this.$route.path !== item.path && !(this.$route.path === '/home' && (item.path === '/'))) {
+        this.$router.push(item.path)
+      }
     }
+  },
+  computed: {
+    //没有子菜单
+    noChildren() {
+      return this.menuData.filter(item => !item.children)
+    },
+    //有子菜单
+    hasChildren() {
+      return this.menuData.filter(item => item.children)
+    },
+    isCollapse() {
+      return this.$store.state.tab.isCollapse;
+    },
+  },
+};
+</script>
+
+<style lang="less" scoped>
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 180px;
+  height: 1080px;
+  min-height: 400px;
+}
+
+.el-menu {
+  height: 100vh;
+  text-align: left;
+
+  h3 {
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+    font-size: 16px;
+    font-weight: 400;
+
+  }
+}
 </style>

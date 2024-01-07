@@ -1,13 +1,11 @@
 <template>
-  <h1>我是Home</h1>
+  <h1>我是退货申请处理</h1>
 </template>
 
 <script>
 export default {
-  data() {
-    return {}
-  }
-};
+  name: "orderSettings"
+}
 </script>
 
 <style scoped>

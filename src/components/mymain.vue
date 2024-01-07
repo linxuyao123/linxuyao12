@@ -1,13 +1,13 @@
 <template>
-  <h1>我是Home</h1>
+ <div>
+   主要内容
+ </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {}
-  }
-};
+  name: "mymain"
+}
 </script>
 
 <style scoped>

@@ -1,12 +1,10 @@
 <template>
-  <h1>我是User</h1>
+  <h1>角色列表</h1>
 </template>
 
 <script>
 export default {
-  data(){
-    return {}
-  }
+  name: "menu"
 }
 </script>
 
