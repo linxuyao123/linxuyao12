@@ -9,11 +9,12 @@ import qs from 'qs'
 const requests = axios.create({
     //配置对象
     //基础路径，发请求的时候，路径当中会出现api，不用你手写
-    baseURL:'/manager',
+    baseURL:'',
     //请求时间超过5秒
     timeout:5000,//(毫秒)
     headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE3MDY0Mzg4MDAzODUsImV4cCI6MTcwNzA0MzYwMH0.6V-L0HcVpUcRvBQtbznMdTmfFp7tl9ujqxS318X6AwtyQQLXqSNwdSeJ2Uvpd7xz9SrdiDIoabOptQxXQ7J7Gg',
     },
 });
 

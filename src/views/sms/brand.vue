@@ -1,5 +1,5 @@
 <template>
-  <h1>举报审核</h1>
+  <h3>品牌推荐</h3>
 </template>
 
 <script>

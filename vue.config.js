@@ -5,14 +5,14 @@ module.exports = defineConfig({
   // publicPath: './',
   devServer: {
     proxy: {
-      '/manager': {
+      '/': {
         // 代理目标地址
-        target: 'http://47.120.6.192/manager',
+        target: 'https://admin-api.macrozheng.com',
         // 允许跨越
         changeOrigin: true,
         // 重写路径
         pathRewrite: {
-          '^/manager': ''
+          '^/': ''
         }
       }
     }

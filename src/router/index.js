@@ -73,11 +73,6 @@ const routes = [
                 component: () => import('../views/commodity/brand'),
             },
             {
-                path: '/pms/another',
-                name: 'another',
-                component: () => import('../views/commodity/another'),
-            },
-            {
                 path: '/pms/addBrand',
                 name: 'brand1',
                 component: () => import('../views/commodity/addBrand'),
@@ -99,6 +94,16 @@ const routes = [
                 component: () => import('../views/order/orderList'),
             },
             {
+                path: '/oms/orderDetail',
+                name: 'orderDetail',
+                component: () => import('../views/order/orderDetail'),
+            },
+            {
+                path: '/oms/deliverOrderList',
+                name: 'orderDetail',
+                component: () => import('../views/order/deliverOrderList'),
+            },
+            {
                 path: '/oms/orderSetting',
                 name: 'orderSetting',
                 component: () => import('../views/order/orderSettings'),
@@ -107,6 +112,12 @@ const routes = [
                 path: '/oms/returnApply',
                 name: 'returnApply',
                 component: () => import('../views/order/returnRequest'),
+            },
+            {
+                path: '/oms/returnApplyDetail:id',
+                name: 'returnApplyDetail',
+                component: () => import('../views/order/returnApplyDetail'),
+                props: route => ({ id: route.query.id }),
             },
             {
                 path: '/oms/returnReason',
@@ -125,29 +136,67 @@ const routes = [
                 component: Home
             },
             {
-                path: '/store/listing',
-                name: 'listing',
-                component: () => import('../views/Marketing/listIng'),
+                path: '/sms/flash',
+                name: 'flash',
+                component: () => import('../views/sms/flash'),
             },
             {
-                path: '/store/settled',
-                name: 'infoModify',
-                component: () => import('../views/Marketing/Settled'),
+                path: '/sms/flashSession',
+                name: 'flashSession',
+                component: () => import('../views/sms/flashSession'),
             },
             {
-                path: '/store/infoModify',
-                name: 'infoModify',
-                component: () => import('../views/Marketing/infoModify'),
+                path: '/sms/selectSession',
+                name: 'selectSession',
+                component: () => import('../views/sms/selectSessionList'),
+                props: route => ({ id: route.query.id }),
             },
             {
-                path: '/store/ReportReview',
-                name: 'ReportReview',
-                component: () => import('../views/Marketing/ReportReview'),
+                path: '/sms/flashProductRelation',
+                name: 'flashProductRelation',
+                component: () => import('../views/sms/productRelationList'),
+                props: route => ({ id: route.query.id }),
             },
             {
-                path: '/store/CommentDelet',
-                name: 'CommentDelet',
-                component: () => import('../views/Marketing/CommentDelet'),
+                path: '/sms/coupon',
+                name: 'coupon',
+                component: () => import('../views/sms/coupon'),
+            },
+            {
+                path: '/sms/addCoupon',
+                name: 'addCoupon',
+                component: () => import('../views/sms/addCoupon'),
+            },
+            {
+                path: '/sms/couponHistory',
+                name: 'couponHistory',
+                component: () => import('../views/sms/couponHistory'),
+                props: route => ({ id: route.query.id }),
+            },
+            {
+                path: '/sms/brand',
+                name: 'homeBrand',
+                component: () => import('../views/sms/brand'),
+            },
+            {
+                path: '/sms/new',
+                name: 'homeNew',
+                component: () => import('../views/sms/new'),
+            },
+            {
+                path: '/sms/hot',
+                name: 'homeHot',
+                component: () => import('../views/sms/hot'),
+            },
+            {
+                path: '/sms/subject',
+                name: 'homeSubject',
+                component: () => import('../views/sms/subject'),
+            },
+            {
+                path: '/sms/advertise',
+                name: 'homeAdvertise',
+                component: () => import('../views/sms/advertise'),
             },
         ]
     },
@@ -193,20 +242,20 @@ const router = new VueRouter({
 })
 
 //路由拦截
-router.beforeEach((to,from,next)=> {
-    console.log('---to---', to);
-    //1.判断是否需要登入
-    if(to.matched.some(ele=>ele.meta.isLogin)) {
-        //2.判断当前的用户是否已经登录
-        let token ='';
-        if(token) {
-            next()
-        }else {
-            next('/Login')
-        }
-
-    }else{//不需要登入
-        next();
-    }
-})
+// router.beforeEach((to,from,next)=> {
+//     console.log('---to---', to);
+//     //1.判断是否需要登入
+//     if(to.matched.some(ele=>ele.meta.isLogin)) {
+//         //2.判断当前的用户是否已经登录
+//         let token ='';
+//         if(token) {
+//             next()
+//         }else {
+//             next('/Login')
+//         }
+//
+//     }else{//不需要登入
+//         next();
+//     }
+// })
 export default router

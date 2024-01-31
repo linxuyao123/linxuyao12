@@ -1,10 +1,10 @@
 <template>
-  <h1>评论删除</h1>
+  <h3>新品推荐</h3>
 </template>
 
 <script>
 export default {
-  name: "subject"
+  name: "new"
 }
 </script>
 

@@ -178,6 +178,7 @@
 </template>
 
 <script>
+import { productCategory } from "@/utils/api";
 export default {
   data() {
     return {
@@ -384,10 +385,24 @@ export default {
             console.error('Error fetching data:', error);
           });
     },
+    async loadder() {
+      try {
+        let arr = {
+          pageNum: 1,
+          pageSize: 5
+        }
+        const t = await productCategory(arr);
+        console.error("请求数据成功", t);
+      } catch (error) {
+        // 请求失败的处理逻辑
+        console.error("请求数据失败", error);
+        // 可以根据实际情况进行进一步的错误处理，比如提示用户或记录错误日志等
+      }
+    },
   },
   created() {
     // 页面加载时加载数据
-    this.loadData();
+    this.loadder();
   },
 }
 </script>

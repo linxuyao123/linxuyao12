@@ -1,10 +1,10 @@
 <template>
-  <h1>信息修改</h1>
+  <h3>人气推荐</h3>
 </template>
 
 <script>
 export default {
-  name: "new"
+  name: "hot"
 }
 </script>
 
